@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
-    <script>
-        function startTimer(duration, display) {
-          var timer = duration, minutes, seconds;
-          setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-    
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-    
-            display.textContent = minutes + ":" + seconds;
-    
-            if (--timer < 0) {
-              timer = duration;
-            }
-          }, 1000);
+    <title>20 Minute Countdown Timer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
         }
-    
-        window.onload = function () {
-          var twentyMinutes = 60 * 20,
-              display = document.querySelector('#time');
-          startTimer(towentyMinutes, display);
-        };
-      </script>
+        #countdown {
+            font-size: 48px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <div>Time left: <span id="time">20:00</span> minutes!</div>
+    <div id="countdown">20:00</div>
+
+    <script>
+        let timeLeft = 20 * 60; // 20 minutes in seconds
+
+        const countdownElement = document.getElementById('countdown');
+
+        const countdown = setInterval(() => {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+
+            countdownElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                countdownElement.textContent = "Time's up!";
+            }
+            timeLeft--;
+        }, 1000);
+    </script>
 </body>
 </html>
