@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Progress Bar Countdown Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .timer-container {
+      width: 80%;
+      max-width: 600px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .progress-bar {
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .progress {
+      height: 30px;
+      background-color: #76c7c0;
+      width: 0%;
+      transition: width 1s linear;
+    }
+    .time {
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
+  </style>
+  <script>
+    function startTimer(duration, display, progress) {
+      var timer = duration, minutes, seconds;
+      var interval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        var percent = ((duration - timer) / duration) * 100;
+        progress.style.width = percent + "%";
+
+        if (--timer < 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    window.onload = function () {
+      var twentyMinutes = 60 * 20,
+          display = document.querySelector('#time'),
+          progress = document.querySelector('.progress');
+      startTimer(twentyMinutes, display, progress);
+    };
+  </script>
+</head>
+<body>
+  <div class="timer-container">
+    <div class="time" id="time">20:00</div>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+  </div>
+</body>
+</html>
