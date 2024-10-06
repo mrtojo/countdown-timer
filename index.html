@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>20 Minute Countdown Timer</title>
+    <title>Countdown Timer</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #fff; /* Change to white */
             height: 200vh; /* Extra height to allow scrolling */
         }
         #countdown {
@@ -16,11 +16,12 @@
             top: 0;
             left: 0;
             right: 0;
-            background-color: #333;
+            background-color: #333; /* Background color for the countdown */
             color: white;
             padding: 10px;
             text-align: center;
             font-size: 18px;
+            border-bottom: 5px solid #76c7c0; /* Optional: decorative border */
         }
         #progress-bar {
             position: fixed;
@@ -28,7 +29,7 @@
             left: 0;
             right: 0;
             height: 10px;
-            background-color: #ddd;
+            background-color: #ddd; /* Background color for the progress bar */
         }
         #progress {
             height: 100%;
